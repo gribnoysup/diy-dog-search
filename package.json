@@ -1,0 +1,23 @@
+{
+  "name": "diy-dog-search",
+  "version": "0.1.0",
+  "private": true,
+  "homepage": "https://gribnoysup.github.io/diy-dog-search",
+  "devDependencies": {
+    "react-scripts": "0.8.4"
+  },
+  "dependencies": {
+    "axios": "^0.15.3",
+    "lodash": "^4.17.4",
+    "react": "^15.4.1",
+    "react-dom": "^15.4.1",
+    "react-masonry-component": "^5.0.3",
+    "styled-components": "^1.2.1"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
