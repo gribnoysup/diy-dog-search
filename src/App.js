@@ -18,7 +18,7 @@ function SearchRoute({children}) {
 
 const App = () => {
   return (
-    <Router baseUrl={'/foo' || process.env.REACT_APP_BASE_URL}>
+    <Router baseUrl={process.env.REACT_APP_BASE_URL}>
       <Shell>
         <SearchRoute>
           <Search />
