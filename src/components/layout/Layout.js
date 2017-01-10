@@ -23,11 +23,10 @@ export const Content = styled.div`
   display: flex;
   flex-direction: column;
   padding: 0 20px;
-  margin: 0 auto;
+  margin: 20px auto;
   width: 100%;
   max-width: 720px;
   box-sizing: border-box;
-  margin-bottom: 20px;
 `
 
 export const Body = styled.div`

@@ -27,7 +27,7 @@ function BeerNotFound({query}) {
   return (
     <FlexContainer align="center" justify="center" direction="column" style={{flex: 1, opacity: .8}}>
       <SadFace />
-      <P>No matches for <Mono>{query}</Mono></P>
+      <P>No matches for <Mono>{query.toUpperCase()}</Mono></P>
     </FlexContainer>
   )
 }
@@ -59,6 +59,19 @@ const SearchInput = styled.input`
   ` : `
     border-color: #000000;
   `}
+
+  &::-webkit-input-placeholder {
+    text-transform: none;
+  }
+  &::-moz-placeholder {
+    text-transform: none;
+  }
+  &:-ms-input-placeholder {
+    text-transform: none;
+  }
+  &:-moz-placeholder {
+    text-transform: none;
+  }
 `
 
 const FixedDiv = styled.div`
@@ -81,7 +94,8 @@ function Welcome({getDOMNode}) {
 }
 
 const FlexWithPadding = styled(FlexContainer)`
-  padding: 10px 20px;
+  min-height: 56px;
+  box-sizing: border-box;
 `
 
 const AnimatedDiv = styled(FixedDiv)`
@@ -210,7 +224,7 @@ export default class Search extends React.Component {
       <FlexContainer direction="column" style={{flex: 1}}>
         <SearchContainer isActive={this.getIsSearchActive()}>
           <SearchInput
-            placeholder="Search"
+            placeholder="i.e. PUNK IPA"
             value={searchQuery}
             onChange={this.onSearchChange}
             isActive={this.getIsSearchActive()}

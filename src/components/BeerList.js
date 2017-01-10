@@ -5,9 +5,9 @@ import {Ul, Li} from './common/List'
 import {Card} from './common/Card'
 import {FlexContainer} from './common/Flex'
 
-import {dispatchRouteChange} from '../components/providers/Router'
+import {dispatchRouteChange, NavLink} from '../components/providers/Router'
 
-const Button = styled.button`
+const BeerButton = styled(NavLink)`
   border: 3px solid;
   background: none;
   text-transform: uppercase;
@@ -15,6 +15,8 @@ const Button = styled.button`
   font-weight: bold;
   cursor: pointer;
   opacity: .3;
+  text-decoration: none;
+  padding: 3px 5px;
 
   &:hover,
   &:focus {
@@ -32,7 +34,7 @@ const BeerCard = ({name, tagline, id}) => (
           {tagline}
         </Div>
         <Div>
-          <Button onClick={() => dispatchRouteChange({}, '/beer/' + id)}>More</Button>
+          <BeerButton href={'/beer/' + id}>More</BeerButton>
         </Div>
       </FlexContainer>
     </Card>

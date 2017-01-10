@@ -13,14 +13,20 @@ export function dispatchRouteChange(event, href, onClick = () => {}) {
   window.dispatchEvent(routeChangeEvent)
 }
 
-export function NavLink({onClick, href, ...props}) {
+export function NavLink({onClick, href, ...props}, {baseUrl}) {
+  const realHref = baseUrl ? baseUrl + href : href
+
   return (
     <Link
-      href={href}
-      onClick={(event) => dispatchRouteChange(event, href, onClick)}
+      href={realHref}
+      onClick={(event) => dispatchRouteChange(event, realHref, onClick)}
       {...props}
     />
   )
+}
+
+NavLink.contextTypes = {
+  baseUrl: React.PropTypes.string
 }
 
 export class Match extends React.Component {
@@ -128,14 +134,16 @@ export class Router extends React.Component {
         query: this.state.query
       },
       registerRoute: this.registerRoute,
-      isMatchesFound: this.isMatchesFound
+      isMatchesFound: this.isMatchesFound,
+      baseUrl: this.props.baseUrl
     }
   }
 
   static childContextTypes = {
     location: React.PropTypes.object,
     registerRoute: React.PropTypes.func,
-    isMatchesFound: React.PropTypes.func
+    isMatchesFound: React.PropTypes.func,
+    baseUrl: React.PropTypes.string
   }
 
   render() {

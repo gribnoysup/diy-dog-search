@@ -1,12 +1,12 @@
 import React from 'react'
 
 import {Router, Match, Miss} from './components/providers/Router'
+import {HeaderWithBackButton} from './components/HeaderWithBackButton'
 
 import Shell from './pages/Shell'
 import Beer from './pages/Beer'
 import Search from './pages/Search'
 import NotFound from './pages/NotFound'
-import {HeaderWithBackButton} from './components/HeaderWithBackButton'
 
 function BeerRoute({children}) {
   return <Match route={/^\/beer\/(\d+|random)\/?$/}>{children}</Match>
@@ -18,7 +18,7 @@ function SearchRoute({children}) {
 
 const App = () => {
   return (
-    <Router baseUrl={process.env.REACT_APP_BASE_URL}>
+    <Router baseUrl={'/foo' || process.env.REACT_APP_BASE_URL}>
       <Shell>
         <SearchRoute>
           <Search />

@@ -2,29 +2,36 @@ import React from 'react'
 import styled from 'styled-components'
 
 import {Header} from './layout/Layout'
-import {dispatchRouteChange} from './providers/Router'
+import {NavLink} from './providers/Router'
 
 const TRANSITION = .2
 
-const BackButton = styled.button`
+const BackButton = styled(NavLink)`
+  display: inline-block;
   cursor: pointer;
   position: relative;
   width: 42px;
   height: 42px;
   border: 3px solid #ffffff;
   background: inherit;
+  box-sizing: border-box;
 
   color: #ffffff;
   text-transform: uppercase;
-  padding-left: 30px;
-  padding-right: 5px;
+  padding: 5px 3px 5px 30px;
   overflow: hidden;
 
   font: inherit;
+  font-size: inherit;
   font-weight: 500;
   text-align: left;
+  text-decoration: none;
 
   transition: width ${TRANSITION}s ease;
+
+  &:visited {
+    color: #ffffff;
+  }
 
   &:after {
     content: '';
@@ -60,7 +67,7 @@ const BackButton = styled.button`
 export function HeaderWithBackButton() {
   return (
     <Header>
-      <BackButton onClick={() => dispatchRouteChange({}, '/')}>
+      <BackButton href="/">
         <span>Back</span>
       </BackButton>
     </Header>
