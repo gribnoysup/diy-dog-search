@@ -5,7 +5,7 @@ import {Ul, Li} from './common/List'
 import {Card} from './common/Card'
 import {FlexContainer} from './common/Flex'
 
-import {dispatchRouteChange} from '../pages/Router'
+import {dispatchRouteChange} from '../components/providers/Router'
 
 const Button = styled.button`
   border: 3px solid;

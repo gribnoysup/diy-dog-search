@@ -4,27 +4,18 @@ import logo from '../assets/spinner.svg'
 import {Content} from '../components/layout/Layout'
 import styled, {keyframes} from 'styled-components'
 
-const rotate360 = keyframes`
-  from {
-    transform: perspective(1000px) rotateY(0deg);
-  }
-  to {
-    transform: perspective(1000px) rotateY(360deg);
-  }
-`
-
 const bounce = keyframes`
   0% {
     transform: rotate(0deg);
   }
-  33% {
-    transform: rotate(-45deg);
-  }
-  66% {
+  20% {
     transform: rotate(45deg);
   }
+  40% {
+    transform: rotate(-45deg);
+  }
   100% {
-    transform: rotate(0deg);
+    transform: rotate(360deg);
   }
 `
 
@@ -34,14 +25,14 @@ const CenteredContent = styled(Content)`
 `
 
 const Logo = styled.img`
-  max-width: 120px;
+  width: 120px;
   opacity: .5;
-  animation: ${bounce} 1.7s ease-in-out infinite;
+  animation: ${bounce} 2.5s ease-in-out infinite;
 `
 
 const Process = () => (
   <CenteredContent>
-    <Logo src={logo}/>
+    <Logo src={logo} alt="Hand holding a beer mug full of beer"/>
   </CenteredContent>
 )
 

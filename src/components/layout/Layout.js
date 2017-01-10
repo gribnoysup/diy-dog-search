@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import {fontFamilyMonospace} from '../common/Typography'
 
 export const Container = styled.div`
   width: 100%;
@@ -40,10 +41,11 @@ export const Footer = styled.div`
   width: 100%;
   box-sizing: border-box;
   ${''/* background-color: #00afdb;*/}
-  background-color: #3A3637;
+  ${''/* background-color: #3A3637;*/}
+  background-color: #000000;
   color: #ffffff;
 
-  font-family: Menlo, Monaco, "Lucida Console", "Liberation Mono", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Courier New", monospace, serif;
+  font-family: ${fontFamilyMonospace};
   font-size: 12px;
   font-weight: bold;
 

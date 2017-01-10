@@ -12,7 +12,6 @@
     "lodash": "^4.17.4",
     "react": "^15.4.1",
     "react-dom": "^15.4.1",
-    "react-masonry-component": "^5.0.3",
     "styled-components": "^1.2.1"
   },
   "scripts": {
@@ -20,6 +19,6 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "deploy": "npm run build && gh-pages -d build"
+    "deploy": "REACT_APP_BASE_URL=\"/diy-dog-search\" npm run build && gh-pages -d build"
   }
 }

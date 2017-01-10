@@ -1,7 +1,8 @@
 import styled from 'styled-components'
 
 export const Link = styled.a`
-  font-weight: bold;
+  cursor: pointer;
+  font-weight: 500;
   color: #000000;
 
   &:visited {

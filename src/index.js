@@ -1,6 +1,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+
 import {injectGlobal} from 'styled-components'
+import {fontFamilyDefault} from './components/common/Typography'
+
 import App from './App'
 
 // eslint-disable-next-line
@@ -12,7 +15,7 @@ injectGlobal`
     margin: 0;
     padding: 0;
     min-height: 100%;
-    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,"Open Sans","Helvetica Neue",sans-serif;
+    font-family: ${fontFamilyDefault};
     letter-spacing: 0;
     font-weight: 400;
     font-style: normal;
