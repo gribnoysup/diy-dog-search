@@ -4,24 +4,82 @@ export const fontFamilyMonospace = `Menlo, Monaco, "Lucida Console", "Liberation
 export const fontFamilyDefault = `-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif`
 
 export const H1 = styled.h1`
-  text-align: center;
+  text-align: ${(props) => props.align || 'center'};
   margin: 0;
-  padding: 20px 0;
+  margin-top: 56px;
+
+  &:last-child {
+    margin-bottom: 56px;
+  }
 `
+
+H1.displayName = 'H1'
+
+export const H2 = styled.h2`
+  margin: 0;
+  margin-top: 46px;
+  text-align: ${(props) => props.align || 'left'};
+
+  &:last-child {
+    margin-bottom: 46px;
+  }
+`
+
+H2.displayName = 'H2'
 
 export const H3 = styled.h3`
   margin: 0;
-  padding: 10px 0;
+  margin-top: 36px;
+  text-align: ${(props) => props.align || 'left'};
+
+  &:last-child {
+    margin-bottom: 36px;
+  }
 `
+
+H3.displayName = 'H3'
 
 export const P = styled.p`
   margin: 0;
-  padding: 5px 0;
+  margin-top: 38px;
+
+  &:last-child {
+    margin-bottom: 38px;
+  }
 `
+
+P.displayName = 'P'
+
 export const Mono = styled.span`
   display: inline-block;
-  padding: 0 4px;
   border-radius: 3px;
   font-family: ${fontFamilyMonospace};
   background-color: #eaeaea;
+`
+
+Mono.displayName = 'Mono'
+
+export const Quote = styled.div`
+  margin-top: 38px;
+  font-style: italic;
+  font-size: 1.2em;
+  padding-left: 25px;
+  color: rgba(0, 0, 0, .6);
+  box-sizing: border-box;
+  width: 100%;
+  border-left: 3px solid rgba(0, 0, 0, .3);
+
+  &:last-child {
+    margin-bottom: 38px;
+  }
+`
+
+export const QuoteLink = styled.a`
+  font-style: italic;
+  font-size: 0.8em;
+  color: rgba(0, 0, 0, .6);
+
+  &:visited {
+    color: rgba(0, 0, 0, .5)
+  }
 `

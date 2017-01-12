@@ -8,6 +8,8 @@ export const Container = styled.div`
   flex-direction: column;
 `
 
+Container.displayName = 'Container'
+
 export const Header = styled.div`
   background-color: #000000;
   display: flex;
@@ -18,6 +20,8 @@ export const Header = styled.div`
   box-sizing: border-box;
 `
 
+Header.displayName = 'Header'
+
 export const Content = styled.div`
   flex: 1;
   display: flex;
@@ -25,9 +29,11 @@ export const Content = styled.div`
   padding: 0 20px;
   margin: 20px auto;
   width: 100%;
-  max-width: 720px;
+  max-width: 760px;
   box-sizing: border-box;
 `
+
+Content.displayName = 'Content'
 
 export const Body = styled.div`
   display: flex;
@@ -35,6 +41,8 @@ export const Body = styled.div`
   width: 100%;
   min-height: 100%;
 `
+
+Body.displayName = 'Body'
 
 export const Footer = styled.div`
   width: 100%;
@@ -67,3 +75,5 @@ export const Footer = styled.div`
     max-width: 420px;
   }
 `
+
+Footer.displayName = 'Footer'
