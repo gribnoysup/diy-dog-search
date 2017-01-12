@@ -29,7 +29,7 @@ export const Content = styled.div`
   padding: 0 20px;
   margin: 20px auto;
   width: 100%;
-  max-width: 720px;
+  max-width: 760px;
   box-sizing: border-box;
 `
 

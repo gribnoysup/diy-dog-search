@@ -3,7 +3,6 @@ import axios from 'axios'
 
 import Process from '../components/Process'
 import BeerContent from '../components/BeerContent'
-import {Content} from '../components/layout/Layout'
 
 export default class Beer extends React.Component {
   constructor(...args) {

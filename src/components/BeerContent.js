@@ -1,14 +1,30 @@
 import React from 'react'
 import styled from 'styled-components'
-import {Content} from './layout/Layout'
 
+import {Content} from './layout/Layout'
 import {Card} from './common/Card'
+import {P} from './common/Typography'
 import {DataTable} from './common/Table'
 import {FlexContainer} from './common/Flex'
 import {Icon} from './common/Icon'
 import {Link} from './common/Link'
+import Share from './Share'
+
+import {Grid, Unit as AUnit} from './layout/Grid'
 
 const nbsp = '\xA0'
+
+const Unit = styled(AUnit)`
+  @media screen and (min-width: 48em) {
+    &:first-child {
+      padding-right: 12px;
+    }
+
+    &:last-child {
+      padding-left: 12px;
+    }
+  }
+`
 
 const Title = styled.h2`
   text-transform: uppercase;
@@ -175,41 +191,69 @@ export default function BeerContent(props) {
         {description}
       </Card>
 
-      <Card title="Basics">
-        <DataTable rows={getBasicsRows(props)} alignment={['left', 'right', 'right']} />
-      </Card>
+      <Grid>
 
-      <Card title="Method / Timings">
-        <IconWithTitle icon="mash">Mash Temp</IconWithTitle>
-        <DataTable rows={getMashRows(method)} cellWidth={['33%', '33%', '33%']} />
-        <IconWithTitle icon="fermenter">Fermentation</IconWithTitle>
-        <DataTable rows={getFermentationRows(method)} cellWidth={['33%', '33%', '33%']} />
-        {method.twist && <IconWithTitle icon="star">Twist</IconWithTitle>}
-        {method.twist && <DataTable rows={getTwistRows(method)} />}
-      </Card>
+        <Unit md={1/2}>
+          <Card title="Basics">
+            <DataTable rows={getBasicsRows(props)} alignment={['left', 'right', 'right']} />
+          </Card>
+        </Unit>
+
+        <Unit md={1/2}>
+          <Card title="Method / Timings">
+            <IconWithTitle icon="mash">Mash Temp</IconWithTitle>
+            <DataTable rows={getMashRows(method)} cellWidth={['33%', '33%', '33%']} />
+            <IconWithTitle icon="fermenter">Fermentation</IconWithTitle>
+            <DataTable rows={getFermentationRows(method)} cellWidth={['33%', '33%', '33%']} />
+            {method.twist && <IconWithTitle icon="star">Twist</IconWithTitle>}
+            {method.twist && <DataTable rows={getTwistRows(method)} />}
+          </Card>
+        </Unit>
+
+      </Grid>
 
       <Card title="Ingredients">
         <IconWithTitle icon="malt">Malt</IconWithTitle>
-        <DataTable rows={getMaltRows(ingredients)} />
+        <DataTable rows={getMaltRows(ingredients)} alignment={['left', 'center', 'center']} cellWidth={['50%', '25%', '25%']} />
         <IconWithTitle icon="hops">Hops</IconWithTitle>
-        <DataTable rows={getHopsRows(ingredients)} alignment={['left', 'right', 'center', 'center']} />
+        <DataTable rows={getHopsRows(ingredients)} alignment={['left', 'right', 'center', 'center']} cellWidth={['25%', '25%', '25%', '25%']}/>
         <IconWithTitle icon="yeast">Yeast</IconWithTitle>
         <DataTable rows={getYeastRows(ingredients)} />
       </Card>
 
-      <Card title="Food Pairing">
-        <IconWithContent icon="food">
-          <DataTable noPadding rows={getFoodRows(food_pairing)} />
-        </IconWithContent>
+      <Grid>
+
+        <Unit md={1/2}>
+          <Card title="Food Pairing">
+            <IconWithContent icon="food">
+              <DataTable noPadding rows={getFoodRows(food_pairing)} />
+            </IconWithContent>
+          </Card>
+        </Unit>
+
+        <Unit md={1/2}>
+          <Card title="Brewer's Tip">
+            <IconWithContent icon="insight">{brewers_tips}</IconWithContent>
+          </Card>
+        </Unit>
+
+      </Grid>
+
+      <Card title="Acknowledgments">
+        <P>
+          Recipe from <Link href="https://www.brewdog.com/diydog">BrewDog's DIY Dog</Link>
+        </P>
+        <P>
+          Contributed to <Link href="https://punkapi.com/">Punk API</Link> by <b>{contributed_by}</b>
+        </P>
       </Card>
 
-      <Card title="Brewer's Tip">
-        <IconWithContent icon="insight">{brewers_tips}</IconWithContent>
-      </Card>
-
-      <Card>
-        Recipe from <Link href="https://www.brewdog.com/diydog">BrewDog's DIY Dog</Link><br />
-        Contributed to <Link href="https://punkapi.com/">Punk API</Link> by <b>{contributed_by}</b>
+      <Card title="Share this beer">
+        <Share
+          url={window.location.href}
+          title={name}
+          // description={`OMG!`}
+        />
       </Card>
 
     </Content>

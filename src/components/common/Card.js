@@ -2,7 +2,10 @@ import React from 'react'
 import styled from 'styled-components'
 
 export const CardContainer = styled.div`
+  display: flex;
+  flex-direction: column;
   margin: 15px 0;
+  flex: 1;
 `
 
 CardContainer.displayName = 'CardContainer'
@@ -19,6 +22,7 @@ export const CardContent = styled.div`
   border-top: 3px solid;
   background-color: #f1f1f1;
   padding: 15px;
+  flex: 1;
 `
 
 CardContent.displayName = 'CardContainer'
