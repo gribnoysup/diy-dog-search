@@ -144,6 +144,10 @@ class SearchContainer extends React.Component {
   }
 }
 
+function GeneralInfo() {
+  return null
+}
+
 export default class Search extends React.Component {
   constructor(...args) {
     super(...args)
@@ -194,7 +198,7 @@ export default class Search extends React.Component {
     } = this.state
 
     if (isPristine === true || searchQuery === '') {
-      return null
+      return <GeneralInfo />
     }
 
     if (isFetching === true) {

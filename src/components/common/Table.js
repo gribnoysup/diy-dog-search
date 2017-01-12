@@ -45,17 +45,29 @@ export const Table = styled.table`
   `}
 `
 
+Table.displayName = 'Table'
+
 export const TBody = styled.tbody``
+
+TBody.displayName = 'TBody'
+
 export const TR = styled.tr``
+
+TR.displayName = 'TR'
+
 export const TD = styled.td`
   padding: 7px 5px;
   border-bottom: 1px solid #a4a6a8;
 `
 
+TD.displayName = 'TD'
+
 export const ScrollableContainer = styled.div`
   width: 100%;
   overflow-x: auto;
 `
+
+ScrollableContainer.displayName = 'ScrollableContainer'
 
 export function DataTable({rows, ...props}) {
   return (

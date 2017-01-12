@@ -35,3 +35,5 @@ export const Icon = styled.span`
     ${(props) => props.invert ? 'filter: invert(1);' : ''}
   }
 `
+
+Icon.displayName = 'Icon'

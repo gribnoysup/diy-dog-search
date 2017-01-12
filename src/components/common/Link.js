@@ -9,3 +9,5 @@ export const Link = styled.a`
     color: #444444;
   }
 `
+
+Link.displayName = 'Link'

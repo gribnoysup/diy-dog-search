@@ -8,6 +8,8 @@ export const Container = styled.div`
   flex-direction: column;
 `
 
+Container.displayName = 'Container'
+
 export const Header = styled.div`
   background-color: #000000;
   display: flex;
@@ -17,6 +19,8 @@ export const Header = styled.div`
   padding: 0 20px;
   box-sizing: border-box;
 `
+
+Header.displayName = 'Header'
 
 export const Content = styled.div`
   flex: 1;
@@ -29,12 +33,16 @@ export const Content = styled.div`
   box-sizing: border-box;
 `
 
+Content.displayName = 'Content'
+
 export const Body = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
   min-height: 100%;
 `
+
+Body.displayName = 'Body'
 
 export const Footer = styled.div`
   width: 100%;
@@ -67,3 +75,5 @@ export const Footer = styled.div`
     max-width: 420px;
   }
 `
+
+Footer.displayName = 'Footer'

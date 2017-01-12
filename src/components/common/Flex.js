@@ -6,3 +6,5 @@ export const FlexContainer = styled.div`
   align-items: ${(props) => props.align || 'center'};
   justify-content: ${(props) => props.justify || 'flex-start'};
 `
+
+FlexContainer.displayName = 'FlexContainer'

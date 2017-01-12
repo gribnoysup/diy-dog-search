@@ -7,7 +7,11 @@ export const Ul = styled.ul`
   margin: 0;
 `
 
+Ul.displayName = 'Ul'
+
 export const Li = styled.li`
   padding: 0;
   margin: 0;
 `
+
+Li.displayName = 'Li'

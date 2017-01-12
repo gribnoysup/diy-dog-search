@@ -9,15 +9,22 @@ export const H1 = styled.h1`
   padding: 20px 0;
 `
 
+H1.displayName = 'H1'
+
 export const H3 = styled.h3`
   margin: 0;
   padding: 10px 0;
 `
 
+H3.displayName = 'H3'
+
 export const P = styled.p`
   margin: 0;
   padding: 5px 0;
 `
+
+P.displayName = 'P'
+
 export const Mono = styled.span`
   display: inline-block;
   padding: 0 4px;
@@ -25,3 +32,5 @@ export const Mono = styled.span`
   font-family: ${fontFamilyMonospace};
   background-color: #eaeaea;
 `
+
+Mono.displayName = 'Mono'

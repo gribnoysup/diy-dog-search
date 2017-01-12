@@ -5,7 +5,7 @@ import Process from '../components/Process'
 import BeerContent from '../components/BeerContent'
 import {Content} from '../components/layout/Layout'
 
-export default class BeerDescription extends React.Component {
+export default class Beer extends React.Component {
   constructor(...args) {
     super(...args)
     this.state = {
@@ -42,10 +42,6 @@ export default class BeerDescription extends React.Component {
 
   render() {
     const {beer, isFetching} = this.state
-    return (
-      <Content>
-        {isFetching ? <Process /> : <BeerContent {...beer} />}
-      </Content>
-    )
+    return isFetching ? <Process /> : <BeerContent {...beer} />
   }
 }

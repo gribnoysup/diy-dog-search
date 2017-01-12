@@ -7,6 +7,8 @@ export const Grid = styled.div`
   align-content: flex-start;
 `
 
+Grid.displayName = 'Grid'
+
 export const Unit = styled.div`
   letter-spacing: normal;
   word-spacing: normal;
@@ -34,4 +36,5 @@ export const Unit = styled.div`
   }
 `
 
+Unit.displayName = 'Unit'
 Unit.defaultProps = { unit: 1 }

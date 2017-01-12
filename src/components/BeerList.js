@@ -5,7 +5,7 @@ import {Ul, Li} from './common/List'
 import {Card} from './common/Card'
 import {FlexContainer} from './common/Flex'
 
-import {dispatchRouteChange, NavLink} from '../components/providers/Router'
+import {NavLink} from '../components/providers/Router'
 
 const BeerButton = styled(NavLink)`
   border: 3px solid;
