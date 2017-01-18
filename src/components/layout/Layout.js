@@ -47,8 +47,6 @@ Body.displayName = 'Body'
 export const Footer = styled.div`
   width: 100%;
   box-sizing: border-box;
-  ${''/* background-color: #00afdb;*/}
-  ${''/* background-color: #3A3637;*/}
   background-color: #000000;
   color: #ffffff;
 
@@ -56,23 +54,32 @@ export const Footer = styled.div`
   font-size: 12px;
   font-weight: bold;
 
-  padding: 20px 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 0 20px;
+  padding-bottom: 10px;
 
   & a {
     color: #ffffff;
     &:visited {
-      ${''/* color: #adefff;*/}
       color: #afafaf;
     }
   }
 
-  & div {
-    padding: 10px 0;
+  & p {
+    margin-top: 10px;
+    margin-bottom: 0;
     text-align: center;
-    max-width: 420px;
+    max-width: 410px;
+  }
+
+  @media screen and (min-width: 35.5em) {
+    padding-bottom: 20px;
+
+    & p {
+      margin-top: 20px;
+    }
   }
 `
 
