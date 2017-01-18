@@ -183,16 +183,16 @@ export class SearchContainer extends React.Component {
     const {isFixed, keepFixed} = this.state
 
     if (isFixed || keepFixed) {
-      document.body.style.marginTop = this.getSearchBarHeight() + 'px'
+      document.body.style.paddingTop = this.getSearchBarHeight() + 'px'
     } else {
-      document.body.style.marginTop = ''
+      document.body.style.paddingTop = ''
     }
 
   }
 
   componentWillUnmount() {
     window.removeEventListener('scroll', this.onScroll)
-    document.body.style.marginTop = ''
+    document.body.style.paddingTop = ''
   }
 
   render() {

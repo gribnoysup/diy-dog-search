@@ -1,7 +1,8 @@
 import React from 'react'
 
 import {Router, Match, Miss} from './components/providers/Router'
-import {HeaderWithBackButton} from './components/HeaderWithBackButton'
+import {BackButton} from './components/common/BackButton'
+import {Header} from './components/layout/Layout'
 
 import Shell from './pages/Shell'
 import NotFound from './pages/NotFound'
@@ -13,6 +14,16 @@ function BeerRoute({children}) {
 
 function SearchRoute({children}) {
   return <Match route={/^\/$/}>{children}</Match>
+}
+
+function HeaderWithBackButton() {
+  return (
+    <Header sticky>
+      <BackButton href="/">
+        <span>Back</span>
+      </BackButton>
+    </Header>
+  )
 }
 
 const App = () => {

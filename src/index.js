@@ -14,7 +14,10 @@ injectGlobal`
   body {
     margin: 0;
     padding: 0;
-    min-height: 100%;
+    width: 100%;
+    min-width: 320px;
+    height: 100%;
+    box-sizing: border-box;
     font-family: ${fontFamilyDefault};
     letter-spacing: 0;
     font-weight: 400;
@@ -28,7 +31,6 @@ injectGlobal`
     line-height: 1.4;
   }
   #root {
-    position: absolute;
     width: 100%;
     height: 100%;
   }

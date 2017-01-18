@@ -259,8 +259,7 @@ export default function BeerContent(props) {
       <Card title="Share this beer">
         <Share
           url={window.location.href}
-          title={name}
-          // description={`OMG!`}
+          title={'🍻 ' + name}
         />
       </Card>
 

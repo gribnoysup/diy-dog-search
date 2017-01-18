@@ -51,6 +51,7 @@ export const P = styled.p`
 P.displayName = 'P'
 
 export const Mono = styled.span`
+  padding: 0 3px;
   display: inline-block;
   border-radius: 3px;
   font-family: ${fontFamilyMonospace};

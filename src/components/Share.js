@@ -10,11 +10,24 @@ const FacebookIcon = generateShareIcon('facebook')
 const TwitterIcon = generateShareIcon('twitter')
 const VKIcon = generateShareIcon('vk')
 
+
+
 const icons = {
   facebook: FacebookIcon,
   twitter: TwitterIcon,
   vk: VKIcon
 }
+
+Object.keys(icons).forEach((provider) => {
+  icons[provider] = styled(icons[provider])`
+    cursor: pointer;
+    transition: transform .16s ease;
+
+    &:hover {
+      transform: scale(1.17);
+    }
+  `
+})
 
 const buttons = {
   facebook: FacebookShareButton,
@@ -53,4 +66,10 @@ export default function Share({url, title, description}) {
       <ShareBlock network="vk" url={url} title={title} description={description} />
     </ShareContainer>
   )
+}
+
+Share.propTypes = {
+  url: React.PropTypes.string.isRequired,
+  title: React.PropTypes.string,
+  description: React.PropTypes.string
 }

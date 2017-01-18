@@ -1,12 +1,9 @@
-import React from 'react'
 import styled from 'styled-components'
-
-import {Header} from './layout/Layout'
-import {NavLink} from './providers/Router'
+import {NavLink} from '../providers/Router'
 
 const TRANSITION = .2
 
-const BackButton = styled(NavLink)`
+export const BackButton = styled(NavLink)`
   display: inline-block;
   cursor: pointer;
   position: relative;
@@ -63,13 +60,3 @@ const BackButton = styled(NavLink)`
     transition: opacity ${TRANSITION}s ease;
   }
 `
-
-export function HeaderWithBackButton() {
-  return (
-    <Header>
-      <BackButton href="/">
-        <span>Back</span>
-      </BackButton>
-    </Header>
-  )
-}
