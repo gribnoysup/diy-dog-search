@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 import {Content} from './layout/Layout'
 import {Card} from './common/Card'
-import {P} from './common/Typography'
+import {P as AP} from './common/Typography'
 import {DataTable} from './common/Table'
 import {FlexContainer} from './common/Flex'
 import {Icon} from './common/Icon'
@@ -48,6 +48,14 @@ const SmallTitle = styled.small`
 const DivWithPadding = styled.div`
   flex: 1;
   padding: 0 10px;
+`
+
+const P = styled(AP)`
+  margin-top: 10px;
+
+  &:last-child {
+    margin-bottom: 10px;
+  }
 `
 
 function IconWithTitle({icon, children}) {
