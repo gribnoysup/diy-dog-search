@@ -4,6 +4,9 @@ import axios from 'axios'
 
 import {FlexContainer} from '../components/common/Flex'
 
+import {dispatchRouteChange} from '../components/providers/Router'
+import {IconButton} from '../components/common/IconButton'
+
 import Process from '../components/Process'
 import BeerList from '../components/BeerList'
 
@@ -93,14 +96,24 @@ export default class Search extends React.Component {
     return (
       <FlexContainer direction="column" style={{flex: '1 0 auto'}}>
         <SearchContainer isActive={this.getIsSearchActive()}>
-          <SearchInput
-            placeholder="Beer Name (i.e. Punk IPA)"
-            value={searchQuery}
-            onChange={this.onSearchChange}
+          {({active, fixed, keepFixed}) => [
+            <SearchInput
+              key="search-input"
 
-            onFocus={this.onInputFocus}
-            onBlur={this.onInputFocus}
-          />
+              placeholder="Beer Name (i.e. Punk IPA)"
+              value={searchQuery}
+              onChange={this.onSearchChange}
+
+              onFocus={this.onInputFocus}
+              onBlur={this.onInputFocus}
+            />,
+            <IconButton
+              key="random-button"
+              invert={active || fixed || keepFixed}
+              icon="dice"
+              onClick={() => dispatchRouteChange({}, '/beer/random/')}
+            />
+          ]}
         </SearchContainer>
         <Content>
           {this.getContent()}

@@ -12,6 +12,7 @@ import insight from '../../assets/insight.svg'
 const ICONS = {mash, fermenter, star, malt, hops, yeast, food, insight}
 const SIZE = 42
 
+// TODO: animate invert with keyframes
 export const Icon = styled.span`
   position: relative;
   width: ${SIZE}px;
@@ -19,6 +20,7 @@ export const Icon = styled.span`
   height: ${SIZE}px;
   background-color: #000000;
   border-radius: 100%;
+  filter: invert(0);
 
   &:after {
     content: '';
