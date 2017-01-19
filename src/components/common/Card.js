@@ -16,7 +16,7 @@ export const CardTitle = styled.h3`
   margin-bottom: 5px;
 `
 
-CardTitle.displayName = 'CardContainer'
+CardTitle.displayName = 'CardTitle'
 
 export const CardContent = styled.div`
   border-top: 3px solid;
@@ -25,7 +25,7 @@ export const CardContent = styled.div`
   flex: 1;
 `
 
-CardContent.displayName = 'CardContainer'
+CardContent.displayName = 'CardContent'
 
 export function Card({title, children}) {
   return (
