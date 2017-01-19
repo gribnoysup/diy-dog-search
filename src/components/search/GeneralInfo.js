@@ -13,7 +13,7 @@ const Iframe = styled.iframe`
   height: 100%;
 `
 
-const Aspect = styled.div`
+const AspectDiv = styled.div`
   position: relative;
   width: 100%;
   margin: 0 auto;
@@ -22,7 +22,7 @@ const Aspect = styled.div`
   &:before {
     content: "";
     display: block;
-    padding-top: ${(props) => props.ratio * 100}%;
+    padding-top: ${(props) => props.aspect * 100}%;
   }
 `
 
@@ -37,9 +37,9 @@ export function GeneralInfo() {
         or&nbsp;mature brewers who want to&nbsp;replicate their favourite recipe from
         BrewDog collection. Here is&nbsp;a&nbsp;presentation video from BrewDog site:
       </P>
-      <Aspect ratio={9/16}>
+      <AspectDiv aspect={9/16}>
         <Iframe src="https://player.vimeo.com/video/156532291" frameBorder="0" allowFullScreen />
-      </Aspect>
+      </AspectDiv>
       <P>
         <QuoteLink href="https://www.brewdog.com/diydog">
           Video from BrewDog website
@@ -84,7 +84,7 @@ export function GeneralInfo() {
         verbatim and share, but cannot be&nbsp;used for commercial purposes.
       </P>
       <H2 align="center" style={{marginBottom: 20}}>Share this site</H2>
-      <Share url={window.location.origin} title={'Maybe I should start home brewing 🤔🍺'}/>
+      <Share url={window.location.origin} />
     </div>
   )
 }

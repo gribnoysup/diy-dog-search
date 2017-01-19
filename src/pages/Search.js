@@ -91,12 +91,13 @@ export default class Search extends React.Component {
     const {searchQuery} = this.state
 
     return (
-      <FlexContainer direction="column" style={{flex: 1}}>
+      <FlexContainer direction="column" style={{flex: '1 0 auto'}}>
         <SearchContainer isActive={this.getIsSearchActive()}>
           <SearchInput
-            placeholder="i.e. PUNK IPA"
+            placeholder="Beer Name (i.e. Punk IPA)"
             value={searchQuery}
             onChange={this.onSearchChange}
+
             onFocus={this.onInputFocus}
             onBlur={this.onInputFocus}
           />
