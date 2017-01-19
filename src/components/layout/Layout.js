@@ -12,6 +12,7 @@ export const Container = styled.div`
 Container.displayName = 'Container'
 
 const HeaderDiv = styled.div`
+  color: #ffffff;
   background-color: #000000;
   display: flex;
   align-items: center;
@@ -19,6 +20,15 @@ const HeaderDiv = styled.div`
   min-height: 56px;
   padding: 0 20px;
   box-sizing: border-box;
+  justify-content: space-between;
+
+  & > *:first-child {
+    margin-left: 0;
+  }
+
+  & > *:last-child {
+    margin-right: 0;
+  }
 
   ${(props) => props.sticky ? `
     position: fixed;
@@ -26,6 +36,10 @@ const HeaderDiv = styled.div`
     left: 0;
     top: 0;
   ` : ''}
+
+  @media screen and (min-width: 48em) {
+    justify-content: flex-start;
+  }
 `
 
 export class Header extends React.Component {
@@ -33,34 +47,22 @@ export class Header extends React.Component {
     sticky: React.PropTypes.bool
   }
 
-  fixBody() {
-    document.body.style.paddingTop = this.getHeaderHeight() + 'px'
+  fixBody(node) {
+    document.body.style.paddingTop = this.getHeight(node) + 'px'
   }
 
   unfixBody() {
     document.body.style.paddingTop = ''
   }
 
-  getHeaderHeight() {
-    return this.headerNode ? this.headerNode.getBoundingClientRect().height : 0
+  getHeight(node) {
+    return node ? node.getBoundingClientRect().height : 0
   }
 
-  componentDidMount() {
+  handleRef(ref) {
     if (this.props.sticky) {
-      this.fixBody()
+      ref ? this.fixBody(ref) : this.unfixBody()
     }
-  }
-
-  componentWillReceiveProps(newProps) {
-    if (newProps.sticky) {
-      this.fixBody()
-    } else {
-      this.unfixBody()
-    }
-  }
-
-  componentWillUnmount() {
-    this.unfixBody()
   }
 
   render() {
@@ -69,15 +71,13 @@ export class Header extends React.Component {
     return (
       <HeaderDiv
         sticky={sticky}
-        innerRef={(ref) => this.headerNode = ref}
+        innerRef={(ref) => this.handleRef(ref)}
       >
         {children}
       </HeaderDiv>
     )
   }
 }
-
-//Header.displayName = 'Header'
 
 export const Content = styled.div`
   flex: 1 0 auto;
@@ -119,6 +119,7 @@ export const Footer = styled.div`
 
   & a {
     color: #ffffff;
+
     &:visited {
       color: #afafaf;
     }

@@ -3,8 +3,7 @@ import styled from 'styled-components'
 import detectPassiveEvents from 'detect-passive-events'
 
 import {FlexContainer} from '../../components/common/Flex'
-import {P, H1} from '../../components/common/Typography'
-import {Link} from '../../components/common/Link'
+import {H1, Subheading} from '../../components/common/Typography'
 
 import {TRANSITION} from '../../util/const'
 import {scrollTop, toFixedFloat} from '../../util/fn'
@@ -12,7 +11,7 @@ import {scrollTop, toFixedFloat} from '../../util/fn'
 import debounce from 'lodash/debounce'
 
 const FixedDiv = styled.div`
-  width: 520px;
+  width: 760px;
   max-width: 100%;
   margin: 0 auto;
   box-sizing: border-box;
@@ -21,11 +20,12 @@ const FixedDiv = styled.div`
 function Welcome({getDOMNode}) {
   return (
     <FixedDiv innerRef={getDOMNode}>
-      <H1>BrewDog's DIY&nbsp;Dog Search</H1>
-      <P>
-        Search through BrewDog's DIY Dog recipes with the help
-        of <Link href="https://punkapi.com">punkapi.com</Link>
-      </P>
+      <H1>
+        BrewDog's DIY&nbsp;Dog Search<br />
+        <Subheading>
+          Search through BrewDog's DIY Dog recipes
+        </Subheading>
+      </H1>
     </FixedDiv>
   )
 }
@@ -36,7 +36,6 @@ const FlexWithPadding = styled(FlexContainer)`
 `
 
 const AnimatedDiv = styled(FixedDiv)`
-  width: 620px;
   padding: 0 20px;
   margin-top: 0;
   transition: margin ${TRANSITION.SearchBar}s ease,
@@ -195,6 +194,23 @@ export class SearchContainer extends React.Component {
     document.body.style.paddingTop = ''
   }
 
+  getChildren() {
+    const {offsetTop, top, isFixed, keepFixed} = this.state
+    const {isActive, children} = this.props
+
+    if (typeof children === 'function') {
+      return children({offsetTop, top, fixed: isFixed, keepFixed, active: isActive})
+    }
+
+    return React.Children.map(this.props.children, (child) =>
+      React.cloneElement(child, {
+        fixed: this.state.isFixed,
+        keepFixed: this.state.keepFixed,
+        active: this.props.isActive
+      })
+    )
+  }
+
   render() {
     // eslint-disable-next-line
     const {isActive, onActiveChange, ...restProps} = this.props
@@ -212,7 +228,7 @@ export class SearchContainer extends React.Component {
       >
         <Welcome />
         <FlexWithPadding innerRef={(ref) => this.searchBarNode = ref}>
-          {this.props.children}
+          {this.getChildren()}
         </FlexWithPadding>
       </AnimatedDiv>
     )

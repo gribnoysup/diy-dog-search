@@ -11,6 +11,8 @@ export default class Beer extends React.Component {
       isFetching: true,
       beer: {}
     }
+
+    this.currentBeerId = null
   }
 
   getBeerId(path) {
@@ -19,9 +21,11 @@ export default class Beer extends React.Component {
     return null
   }
 
-  fetchBeer() {
-    const {location} = this.props
+  fetchBeer(location = this.props.location) {
     const beerId = this.getBeerId(location.path)
+    this.currentBeerId = beerId
+
+    this.setState({isFetching: true})
 
     if (beerId) {
       return axios.get(`https://api.punkapi.com/v2/beers/${beerId}`)
@@ -31,12 +35,22 @@ export default class Beer extends React.Component {
 
   }
 
+  setBeer(response) {
+    if (Array.isArray(response.data)) {
+      this.setState({beer: response.data[0], isFetching: false})
+    }
+  }
+
+  componentWillReceiveProps(newProps) {
+    const newBeerId = this.getBeerId(newProps.location.path)
+
+    if (newBeerId !== this.currentBeerId || newBeerId === 'random') {
+      this.fetchBeer(newProps.location).then((response) => this.setBeer(response))
+    }
+  }
+
   componentDidMount() {
-    this.fetchBeer().then((response) => {
-      if (Array.isArray(response.data)) {
-        this.setState({beer: response.data[0], isFetching: false})
-      }
-    })
+    this.fetchBeer().then((response) => this.setBeer(response))
   }
 
   render() {

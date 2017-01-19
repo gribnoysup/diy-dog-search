@@ -1,8 +1,9 @@
 import React from 'react'
 
-import {Router, Match, Miss} from './components/providers/Router'
-import {BackButton} from './components/common/BackButton'
+import {Router, Match, Miss, dispatchRouteChange} from './components/providers/Router'
 import {Header} from './components/layout/Layout'
+
+import {IconButton} from './components/common/IconButton'
 
 import Shell from './pages/Shell'
 import NotFound from './pages/NotFound'
@@ -19,9 +20,20 @@ function SearchRoute({children}) {
 function HeaderWithBackButton() {
   return (
     <Header sticky>
-      <BackButton href="/">
-        <span>Back</span>
-      </BackButton>
+      <IconButton
+        invert
+        icon="back"
+        onClick={() => dispatchRouteChange({}, '/')}
+      >
+        Back
+      </IconButton>
+      <IconButton
+        invert
+        icon="dice"
+        onClick={() => dispatchRouteChange({}, '/beer/random/')}
+      >
+        Random
+      </IconButton>
     </Header>
   )
 }

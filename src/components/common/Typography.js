@@ -3,6 +3,10 @@ import styled from 'styled-components'
 export const fontFamilyMonospace = `Menlo, Monaco, "Lucida Console", "Liberation Mono", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Courier New", monospace, serif`
 export const fontFamilyDefault = `-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif`
 
+export const Subheading = styled.small`
+  font-weight: normal;
+`
+
 export const H1 = styled.h1`
   text-align: ${(props) => props.align || 'center'};
   margin: 0;
