@@ -12,6 +12,14 @@
     <meta name="theme-color" content="#000000">
 
     <title>DIY Dog Search</title>
+
+    <script>
+        // init service-worker
+        if ('serviceWorker' in window.navigator) {
+            window.navigator.serviceWorker.register('/sw.js');
+        }
+    </script>
+
   </head>
   <body>
     <div id="root"></div>

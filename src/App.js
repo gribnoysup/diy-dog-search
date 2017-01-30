@@ -17,13 +17,20 @@ function SearchRoute({children}) {
   return <Match route={/^\/$/}>{children}</Match>
 }
 
-function HeaderWithBackButton() {
+function OfflineRoute({children}) {
+  return <Match route={/^\/offline$/}>{children}</Match>
+}
+
+function HeaderWithBackButton({location}) {
+  // TODO: need to be fixed for proper offline support
+  const route = location.prevState.path || '/'
+
   return (
     <Header sticky>
       <IconButton
         invert
         icon="back"
-        onClick={() => dispatchRouteChange({}, '/')}
+        onClick={() => dispatchRouteChange({}, route)}
       >
         Back
       </IconButton>
@@ -55,7 +62,7 @@ const App = () => {
           <AsyncComponent
             getComponent={(callback) => {
               require.ensure([], (require) => {
-                  callback(null, require('./pages/Search').default)
+                callback(null, require('./pages/Search').default)
               }, 'search')
             }}
           />
@@ -65,11 +72,21 @@ const App = () => {
           <AsyncComponent
             getComponent={(callback) => {
               require.ensure([], (require) => {
-                  callback(null, require('./pages/Beer').default)
+                callback(null, require('./pages/Beer').default)
               }, 'beer')
             }}
           />
         </BeerRoute>
+
+        <OfflineRoute>
+          <AsyncComponent
+            getComponent={(callback) => {
+              require.ensure([], (require) => {
+                callback(null, require('./pages/Offline').default)
+              }, 'beer')
+            }}
+          />
+        </OfflineRoute>
 
         <Miss>
           <NotFound />

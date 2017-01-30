@@ -4,6 +4,8 @@ import axios from 'axios'
 import Process from '../components/Process'
 import BeerContent from '../components/BeerContent'
 
+import {pushBeer} from '../util/db'
+
 export default class Beer extends React.Component {
   constructor(...args) {
     super(...args)
@@ -15,7 +17,7 @@ export default class Beer extends React.Component {
     this.currentBeerId = null
   }
 
-  getBeerId(path) {
+  getBeerId(path = this.props.location.path) {
     const result = path.match(/^\/beer\/(\d+|random)\/?$/)
     if (result && result[1]) return result[1]
     return null
@@ -37,7 +39,12 @@ export default class Beer extends React.Component {
 
   setBeer(response) {
     if (Array.isArray(response.data)) {
-      this.setState({beer: response.data[0], isFetching: false})
+      const newBeerId = this.getBeerId()
+      const newBeer = response.data[0]
+      if (newBeerId !== 'random') pushBeer(newBeer)
+      this.setState({beer: newBeer, isFetching: false})
+      // TODO: maybe
+      // window.history.replaceState({}, null, `/beer/${response.data[0].id}/`)
     }
   }
 
