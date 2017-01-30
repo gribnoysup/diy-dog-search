@@ -66,8 +66,12 @@ export class Router extends React.Component {
     super(...args)
 
     this.state = {
-      path: window.location.pathname,
-      query: window.location.search,
+      prevState: {
+        path: null,
+        query: null
+      },
+      path: null,
+      query: null,
       registeredRoutes: []
     }
 
@@ -85,9 +89,14 @@ export class Router extends React.Component {
 
     this.setState((prevState) => {
       const {pathname, search} = window.location
+
       return {
         path: baseUrl ? pathname.replace(new RegExp('^' + baseUrl), '') : pathname,
-        query: search
+        query: search,
+        prevState: {
+          path: prevState.path,
+          query: prevState.query
+        }
       }
     })
   }
@@ -131,7 +140,8 @@ export class Router extends React.Component {
     return {
       location: {
         path: this.state.path,
-        query: this.state.query
+        query: this.state.query,
+        prevState: this.state.prevState
       },
       registerRoute: this.registerRoute,
       isMatchesFound: this.isMatchesFound,

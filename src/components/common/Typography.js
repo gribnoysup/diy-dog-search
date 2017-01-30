@@ -5,12 +5,17 @@ export const fontFamilyDefault = `-apple-system, BlinkMacSystemFont, "Segoe UI",
 
 export const Subheading = styled.small`
   font-weight: normal;
+  line-height: 1;
 `
 
 export const H1 = styled.h1`
   text-align: ${(props) => props.align || 'center'};
   margin: 0;
   margin-top: 56px;
+
+  &:first-child {
+    margin-top: calc(56px / 2);
+  }
 
   &:last-child {
     margin-bottom: 56px;
@@ -24,6 +29,10 @@ export const H2 = styled.h2`
   margin-top: 46px;
   text-align: ${(props) => props.align || 'left'};
 
+  &:first-child {
+    margin-top: calc(46px / 2);
+  }
+
   &:last-child {
     margin-bottom: 46px;
   }
@@ -36,6 +45,10 @@ export const H3 = styled.h3`
   margin-top: 36px;
   text-align: ${(props) => props.align || 'left'};
 
+  &:first-child {
+    margin-top: calc(36px / 2);
+  }
+
   &:last-child {
     margin-bottom: 36px;
   }
@@ -45,10 +58,14 @@ H3.displayName = 'H3'
 
 export const P = styled.p`
   margin: 0;
-  margin-top: 38px;
+  margin-top: 36px;
+
+  &:first-child {
+    margin-top: calc(36px / 2);
+  }
 
   &:last-child {
-    margin-bottom: 38px;
+    margin-bottom: 36px;
   }
 `
 
@@ -65,7 +82,7 @@ export const Mono = styled.span`
 Mono.displayName = 'Mono'
 
 export const Quote = styled.div`
-  margin-top: 38px;
+  margin-top: 36px;
   font-style: italic;
   font-size: 1.2em;
   padding-left: 25px;
@@ -74,8 +91,12 @@ export const Quote = styled.div`
   width: 100%;
   border-left: 3px solid rgba(0, 0, 0, .3);
 
+  &:first-child {
+    margin-top: calc(36px / 2);
+  }
+
   &:last-child {
-    margin-bottom: 38px;
+    margin-bottom: 36px;
   }
 `
 

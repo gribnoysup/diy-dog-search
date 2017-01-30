@@ -7,7 +7,14 @@ export const SIZE = {
   ButtonWidth: 42
 }
 
+export const DB = {
+    MaxBeerCount: 10,
+    Name: 'diy-dog-search',
+    BeerList: 'beer-list'
+}
+
 export default {
   TRANSITION,
-  SIZE
+  SIZE,
+  DB
 }
