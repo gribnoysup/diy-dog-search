@@ -6165,6 +6165,12 @@
       "resolved": "https://registry.npmjs.org/repeating/-/repeating-2.0.1.tgz",
       "dev": true
     },
+    "replace-in-file": {
+      "version": "2.2.2",
+      "from": "replace-in-file@latest",
+      "resolved": "https://registry.npmjs.org/replace-in-file/-/replace-in-file-2.2.2.tgz",
+      "dev": true
+    },
     "request": {
       "version": "2.79.0",
       "from": "request@>=2.55.0 <3.0.0",
@@ -6240,7 +6246,7 @@
     },
     "rimraf": {
       "version": "2.5.4",
-      "from": "rimraf@>=2.2.8 <3.0.0",
+      "from": "https://registry.npmjs.org/rimraf/-/rimraf-2.5.4.tgz",
       "resolved": "https://registry.npmjs.org/rimraf/-/rimraf-2.5.4.tgz",
       "dev": true
     },

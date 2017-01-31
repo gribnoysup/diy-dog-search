@@ -8,16 +8,19 @@ const build = path.join(__dirname, 'build')
 const index = path.join(__dirname, 'build', 'index.html')
 const toolbox = path.join(__dirname, 'node_modules', 'sw-toolbox', 'sw-toolbox.js')
 
-app.use(morgan('tiny'))
+
+if (!process.env.NO_LOGGING) {
+  app.use(morgan('tiny'))
+}
 
 app.use(compression())
 
-app.get('/sw.js', (req, res) => {
-  res.sendFile(__dirname + '/public/sw.js')
-})
-
 app.get('/sw-toolbox.js', (req, res) => {
   res.sendFile(toolbox)
+})
+
+app.get('/sw-toolbox.js.map', (req, res) => {
+  res.sendFile(toolbox + '.map')
 })
 
 app.use(express.static(build))
