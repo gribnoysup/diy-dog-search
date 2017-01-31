@@ -4,6 +4,8 @@ const glob = require('glob')
 
 let precacheList = ''
 
+console.log('Creating precache list...')
+
 glob(path.join(__dirname, 'build', 'static') + '/**/?(*.js|*.svg)', (err, files) => {
   const list = files.map((filename) => filename.replace(/.+(?=\/static)/ig, ''))
 
@@ -15,3 +17,7 @@ glob(path.join(__dirname, 'build', 'static') + '/**/?(*.js|*.svg)', (err, files)
 
   fs.writeFileSync(path.join(__dirname, 'build', 'precache-list.js'), precacheList, 'utf-8')
 })
+
+
+console.log('Created successfully.')
+process.exit()
