@@ -12,6 +12,10 @@ app.use(morgan('tiny'))
 
 app.use(compression())
 
+app.get('/sw.js', (req, res) => {
+  res.sendFile(__dirname + '/public/sw.js')
+})
+
 app.get('/sw-toolbox.js', (req, res) => {
   res.sendFile(toolbox)
 })

@@ -1572,8 +1572,7 @@
     "balanced-match": {
       "version": "0.4.2",
       "from": "balanced-match@>=0.4.1 <0.5.0",
-      "resolved": "https://maven.osmp.ru/nexus/content/groups/npm/balanced-match/-/balanced-match-0.4.2.tgz",
-      "dev": true
+      "resolved": "https://maven.osmp.ru/nexus/content/groups/npm/balanced-match/-/balanced-match-0.4.2.tgz"
     },
     "base62": {
       "version": "0.1.1",
@@ -1646,8 +1645,7 @@
     "brace-expansion": {
       "version": "1.1.6",
       "from": "brace-expansion@>=1.0.0 <2.0.0",
-      "resolved": "https://maven.osmp.ru/nexus/content/groups/npm/brace-expansion/-/brace-expansion-1.1.6.tgz",
-      "dev": true
+      "resolved": "https://maven.osmp.ru/nexus/content/groups/npm/brace-expansion/-/brace-expansion-1.1.6.tgz"
     },
     "braces": {
       "version": "1.8.5",
@@ -2000,8 +1998,7 @@
     "concat-map": {
       "version": "0.0.1",
       "from": "concat-map@0.0.1",
-      "resolved": "https://maven.osmp.ru/nexus/content/groups/npm/concat-map/-/concat-map-0.0.1.tgz",
-      "dev": true
+      "resolved": "https://maven.osmp.ru/nexus/content/groups/npm/concat-map/-/concat-map-0.0.1.tgz"
     },
     "concat-stream": {
       "version": "1.6.0",
@@ -3014,8 +3011,7 @@
     "fs.realpath": {
       "version": "1.0.0",
       "from": "fs.realpath@>=1.0.0 <2.0.0",
-      "resolved": "https://maven.osmp.ru/nexus/content/groups/npm/fs.realpath/-/fs.realpath-1.0.0.tgz",
-      "dev": true
+      "resolved": "https://maven.osmp.ru/nexus/content/groups/npm/fs.realpath/-/fs.realpath-1.0.0.tgz"
     },
     "fsevents": {
       "version": "1.0.14",
@@ -3891,9 +3887,8 @@
     },
     "glob": {
       "version": "7.1.1",
-      "from": "glob@>=7.0.3 <8.0.0",
-      "resolved": "https://maven.osmp.ru/nexus/content/groups/npm/glob/-/glob-7.1.1.tgz",
-      "dev": true
+      "from": "glob@>=7.1.1 <8.0.0",
+      "resolved": "https://maven.osmp.ru/nexus/content/groups/npm/glob/-/glob-7.1.1.tgz"
     },
     "glob-base": {
       "version": "0.3.0",
@@ -4161,8 +4156,7 @@
     "inflight": {
       "version": "1.0.6",
       "from": "inflight@>=1.0.4 <2.0.0",
-      "resolved": "https://maven.osmp.ru/nexus/content/groups/npm/inflight/-/inflight-1.0.6.tgz",
-      "dev": true
+      "resolved": "https://maven.osmp.ru/nexus/content/groups/npm/inflight/-/inflight-1.0.6.tgz"
     },
     "inherits": {
       "version": "2.0.3",
@@ -4685,7 +4679,7 @@
         "esprima": {
           "version": "2.7.3",
           "from": "esprima@>=2.6.0 <3.0.0",
-          "resolved": "https://maven.osmp.ru/nexus/content/groups/npm/esprima/-/esprima-2.7.3.tgz",
+          "resolved": "https://registry.npmjs.org/esprima/-/esprima-2.7.3.tgz",
           "dev": true
         }
       }
@@ -5122,8 +5116,7 @@
     "minimatch": {
       "version": "3.0.3",
       "from": "minimatch@>=3.0.2 <4.0.0",
-      "resolved": "https://maven.osmp.ru/nexus/content/groups/npm/minimatch/-/minimatch-3.0.3.tgz",
-      "dev": true
+      "resolved": "https://maven.osmp.ru/nexus/content/groups/npm/minimatch/-/minimatch-3.0.3.tgz"
     },
     "minimist": {
       "version": "0.0.8",
@@ -5357,8 +5350,7 @@
     "once": {
       "version": "1.4.0",
       "from": "once@>=1.3.0 <2.0.0",
-      "resolved": "https://maven.osmp.ru/nexus/content/groups/npm/once/-/once-1.4.0.tgz",
-      "dev": true
+      "resolved": "https://maven.osmp.ru/nexus/content/groups/npm/once/-/once-1.4.0.tgz"
     },
     "onetime": {
       "version": "1.1.0",
@@ -5491,8 +5483,7 @@
     "path-is-absolute": {
       "version": "1.0.1",
       "from": "path-is-absolute@>=1.0.0 <2.0.0",
-      "resolved": "https://maven.osmp.ru/nexus/content/groups/npm/path-is-absolute/-/path-is-absolute-1.0.1.tgz",
-      "dev": true
+      "resolved": "https://maven.osmp.ru/nexus/content/groups/npm/path-is-absolute/-/path-is-absolute-1.0.1.tgz"
     },
     "path-is-inside": {
       "version": "1.0.2",
@@ -7243,8 +7234,7 @@
     "wrappy": {
       "version": "1.0.2",
       "from": "wrappy@>=1.0.0 <2.0.0",
-      "resolved": "https://maven.osmp.ru/nexus/content/groups/npm/wrappy/-/wrappy-1.0.2.tgz",
-      "dev": true
+      "resolved": "https://maven.osmp.ru/nexus/content/groups/npm/wrappy/-/wrappy-1.0.2.tgz"
     },
     "write": {
       "version": "0.2.1",
