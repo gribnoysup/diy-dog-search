@@ -1,9 +1,13 @@
 (function serviceWorker(global) {
+  importScripts('/precache-list.js')
   importScripts('/sw-toolbox.js')
 
+  global.toolbox.options.cache.name = 'diy-dog-search'
+  global.toolbox.precache(global.PRECACHE_LIST)
+
   function openCache(options) {
-    options = options || { cache: {} }
-    var cacheName = options.cache.name || global.toolbox.options.cache.name
+    cache = options.cache || {}
+    var cacheName = cache.name || global.toolbox.options.cache.name
     return caches.open(cacheName)
   }
 
@@ -22,50 +26,50 @@
   var router = global.toolbox.router
   var cacheFirst = global.toolbox.cacheFirst
   var networkFirst = global.toolbox.networkFirst
-  var networkOnly = global.toolbox.networkOnly
+  // var networkOnly = global.toolbox.networkOnly
 
   // debug mode for local build
   global.toolbox.options.debug = /localhost/.test(host)
 
   function getFromCache(request, options) {
     return openCache(options)
-    .then(function onOpen(cache) {
-      return cache.match(request)
-    })
-    .then(function onMatch(response) {
-      if (response) return response
-      throw new Error('No match found')
-    })
+      .then(function onOpen(cache) {
+        return cache.match(request)
+      })
+      .then(function onMatch(response) {
+        if (response) return response
+        throw new Error('No match found')
+      })
   }
 
   function onAppRoute(_request, values, options) {
     var request = new Request('/index.html')
 
     return fetch(request)
-    .then(function onResponse(response) {
-      if (request.method === 'GET' && isSuccess(response, options)) {
-        openCache(options)
-        .then(function onOpen(cache) {
-          cache.put(request, response)
-        })
-      }
+      .then(function onResponse(response) {
+        if (request.method === 'GET' && isSuccess(response, options)) {
+          openCache(options)
+          .then(function onOpen(cache) {
+            cache.put(request, response)
+          })
+        }
 
-      return response.clone()
-    })
-    .catch(function(error) {
-      if (offline.test(_request.url)) {
-        return getFromCache(request, options)
-      }
+        return response.clone()
+      })
+      .catch(function(error) {
+        if (offline.test(_request.url)) {
+          return getFromCache(request, options)
+        }
 
-      return Response.redirect('/offline')
-    })
+        return Response.redirect('/offline')
+      })
   }
 
-  router.get('/static/*', cacheFirst, { cache: { name: 'static' } })
+  router.get('/static/*', cacheFirst)
 
-  router.get('/offline', onAppRoute, { cache: { name: 'public' } })
-  router.get('/beer/*', onAppRoute, { cache: { name: 'public' } })
-  router.get('/', onAppRoute, { cache: { name: 'public' } })
+  router.get('/offline', onAppRoute)
+  router.get('/beer/*', onAppRoute)
+  router.get('/', onAppRoute)
 
   // TODO: save random beer to cache with id
   router.get(beer, networkFirst, {
