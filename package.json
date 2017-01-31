@@ -2,8 +2,24 @@
   "name": "diy-dog-search",
   "version": "0.1.0",
   "private": true,
+  "now": {
+    "files": [
+      "build",
+      "npm-shrinkwrap.json",
+      "index.js"
+    ],
+    "engines": {
+      "node": "6.9.4"
+    },
+    "env": {
+      "NODE_ENV": "production",
+      "NO_LOGGING": true
+    }
+  },
   "devDependencies": {
-    "react-scripts": "0.8.5"
+    "react-scripts": "0.8.5",
+    "replace-in-file": "^2.2.2",
+    "rimraf": "https://registry.npmjs.org/rimraf/-/rimraf-2.5.4.tgz"
   },
   "dependencies": {
     "axios": "^0.15.3",
@@ -23,10 +39,13 @@
   },
   "scripts": {
     "watch": "react-scripts start",
-    "build": "react-scripts build && npm run build-precache",
+    "remove-map": "node ./remove-map.js",
+    "now-build": "echo \"no build for now (pun intended)\n\" && exit",
+    "build": "react-scripts build && npm run remove-map && npm run build-precache",
     "build-precache": "node ./build-precache.js",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "start": "node ./index.js"
+    "start": "node ./index.js",
+    "publish": "npm run build && now"
   }
 }
