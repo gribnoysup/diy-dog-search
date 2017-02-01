@@ -1,3 +1,5 @@
+/* global importScripts */
+
 (function serviceWorker(global) {
   importScripts('/precache-list.js')
   importScripts('/sw-toolbox.js')
@@ -6,7 +8,7 @@
   global.toolbox.precache(global.PRECACHE_LIST)
 
   function openCache(options) {
-    cache = options.cache || {}
+    var cache = options.cache || {}
     var cacheName = cache.name || global.toolbox.options.cache.name
     return caches.open(cacheName)
   }
@@ -17,15 +19,15 @@
     return successResponses.test(response.status)
   }
 
-  var index = 'index.html'
+  // var index = 'index.html'
 
   var host = global.location.host
-  var beer = /api.punkapi.com\/v2\/beers\/\d+/
+  // var beer = /api.punkapi.com\/v2\/beers\/\d+/
   var offline = new RegExp(host + '/offline$')
 
   var router = global.toolbox.router
   var cacheFirst = global.toolbox.cacheFirst
-  var networkFirst = global.toolbox.networkFirst
+  // var networkFirst = global.toolbox.networkFirst
   // var networkOnly = global.toolbox.networkOnly
 
   // debug mode for local build
@@ -49,9 +51,9 @@
       .then(function onResponse(response) {
         if (request.method === 'GET' && isSuccess(response, options)) {
           openCache(options)
-          .then(function onOpen(cache) {
-            cache.put(request, response)
-          })
+            .then(function onOpen(cache) {
+              cache.put(request, response)
+            })
         }
 
         return response.clone()
@@ -72,12 +74,14 @@
   router.get('/', onAppRoute)
 
   // TODO: save random beer to cache with id
-  router.get(beer, networkFirst, {
-    cache: {
-      name: 'punkapi-beer',
-      maxEntries: 10
-    }
-  })
+  // router.get(beer, networkFirst, {
+  //   cache: {
+  //     name: 'punkapi-beer',
+  //     maxEntries: 10
+  //   }
+  // })
+
+  // TODO: cache punkapi images
 
   // Boilerplate to ensure that service-worker takes control of the page ASAP
   global.addEventListener('install', function onInstall(event) {

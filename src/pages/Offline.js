@@ -4,6 +4,11 @@ import OfflineContent from '../components/offline/OfflineContent'
 import {getBeerList} from '../util/db'
 
 export default class Offline extends React.Component {
+  constructor(...args) {
+    super(...args)
+    this.onBeerClick = this.handleBeerClick.bind(this)
+  }
+
   state = {
     beerList: []
   }
@@ -14,7 +19,16 @@ export default class Offline extends React.Component {
     })
   }
 
+  handleBeerClick(id) {
+    this.props.push(`/beer/${id}/`)
+  }
+
   render() {
-    return <OfflineContent beerList={this.state.beerList}/>
+    return (
+      <OfflineContent
+        beerList={this.state.beerList}
+        onBeerClick={this.onBeerClick}
+      />
+    )
   }
 }

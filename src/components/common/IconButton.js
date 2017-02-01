@@ -100,7 +100,7 @@ export class IconButton extends React.Component {
   }
 
   render() {
-    const {children, icon, iconSize, invert, onClick} = this.props
+    const {children, label, icon, iconSize, invert, onClick} = this.props
     const {contentWidth} = this.state
 
     return (
@@ -111,9 +111,9 @@ export class IconButton extends React.Component {
         contentWidth={contentWidth}
         onClick={onClick}
       >
-        {children &&
+        {(children || label) &&
           <span ref={this.getContentWidth}>
-            {children}
+            {children || label}
           </span>
         }
       </Button>
