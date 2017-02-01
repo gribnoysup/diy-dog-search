@@ -38,14 +38,14 @@
     "redux": "^3.6.0",
     "replace-in-file": "^2.2.2",
     "rimraf": "https://registry.npmjs.org/rimraf/-/rimraf-2.5.4.tgz",
-    "styled-components": "^1.2.1"
+    "styled-components": "^1.2.1",
+    "react-router": "^4.0.0-beta.3",
+    "react-router-dom": "^4.0.0-beta.3"
   },
   "dependencies": {
     "compression": "^1.6.2",
     "express": "^4.14.0",
     "morgan": "^1.7.0",
-    "react-router": "^4.0.0-beta.3",
-    "react-router-dom": "^4.0.0-beta.3",
     "sw-toolbox": "^3.4.0"
   },
   "scripts": {
