@@ -9,7 +9,7 @@ export default class AsyncComponent extends React.Component {
 
   componentDidMount() {
     const {getComponent} = this.props
-    
+
     getComponent((error, component) => {
       if (!error && component) {
         this.setState({component})

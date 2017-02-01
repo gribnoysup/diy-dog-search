@@ -5,9 +5,9 @@ import {Ul, Li} from './common/List'
 import {Card} from './common/Card'
 import {FlexContainer} from './common/Flex'
 
-import {NavLink} from '../components/providers/Router'
+// import {NavLink} from '../components/providers/Router'
 
-const BeerButton = styled(NavLink)`
+const BeerButton = styled.button`
   border: 3px solid;
   background: none;
   text-transform: uppercase;
@@ -24,28 +24,26 @@ const BeerButton = styled(NavLink)`
   }
 `
 
-const Div = ({children, ...props}) => React.createElement('div', props, children)
-
-const BeerCard = ({name, tagline, id}) => (
+const BeerCard = ({name, tagline, id, onBtnClick}) => (
   <Li>
     <Card title={name}>
       <FlexContainer justify="space-between">
-        <Div>
+        <div>
           {tagline}
-        </Div>
-        <Div>
-          <BeerButton href={'/beer/' + id}>More</BeerButton>
-        </Div>
+        </div>
+        <div>
+          <BeerButton onClick={onBtnClick}>More</BeerButton>
+        </div>
       </FlexContainer>
     </Card>
   </Li>
 )
 
-export default function BeerList({beers}) {
+export default function BeerList({beers, onBeerClick}) {
   return (
       <Ul>
         {beers.map((beer) => (
-          <BeerCard key={beer.id} {...beer} />
+          <BeerCard key={beer.id} {...beer} onBtnClick={() => onBeerClick(beer.id)}/>
         ))}
       </Ul>
   )

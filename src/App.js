@@ -1,96 +1,66 @@
 import React from 'react'
 
-import {Router, Match, Miss, dispatchRouteChange} from './components/providers/Router'
-import {Header} from './components/layout/Layout'
-
-import {IconButton} from './components/common/IconButton'
-
 import Shell from './pages/Shell'
-import NotFound from './pages/NotFound'
 import AsyncComponent from './components/providers/AsyncComponent'
 
-function BeerRoute({children}) {
-  return <Match route={/^\/beer\/(\d+|random)\/?$/}>{children}</Match>
-}
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 
-function SearchRoute({children}) {
-  return <Match route={/^\/$/}>{children}</Match>
-}
+const AsyncSearch = (props) => (
+  <AsyncComponent
+    {...props}
+    getComponent={(callback) => {
+      require.ensure([], (require) => {
+        callback(null, require('./pages/Search').default)
+      }, 'search')
+    }}
+  />
+)
 
-function OfflineRoute({children}) {
-  return <Match route={/^\/offline$/}>{children}</Match>
-}
+const AsyncBeer = (props) => (
+  <AsyncComponent
+    {...props}
+    getComponent={(callback) => {
+      require.ensure([], (require) => {
+        callback(null, require('./pages/Beer').default)
+      }, 'beer')
+    }}
+  />
+)
 
-function HeaderWithBackButton({location}) {
-  // TODO: need to be fixed for proper offline support
-  const route = location.prevState.path || '/'
+const AsyncOffline = (props) => (
+  <AsyncComponent
+    {...props}
+    getComponent={(callback) => {
+      require.ensure([], (require) => {
+        callback(null, require('./pages/Offline').default)
+      }, 'offline')
+    }}
+  />
+)
 
-  return (
-    <Header sticky>
-      <IconButton
-        invert
-        icon="back"
-        onClick={() => dispatchRouteChange({}, route)}
-      >
-        Back
-      </IconButton>
-      <IconButton
-        invert
-        icon="dice"
-        onClick={() => dispatchRouteChange({}, '/beer/random/')}
-      >
-        Random
-      </IconButton>
-    </Header>
-  )
-}
+const AsyncNotFound = (props) => (
+  <AsyncComponent
+    {...props}
+    getComponent={(callback) => {
+      require.ensure([], (require) => {
+        callback(null, require('./pages/NotFound').default)
+      }, 'not-found')
+    }}
+  />
+)
 
 const App = () => {
   return (
-    <Router baseUrl={process.env.REACT_APP_BASE_URL}>
+    <Router>
       <Shell>
 
-        <BeerRoute>
-          <HeaderWithBackButton />
-        </BeerRoute>
-
-        <Miss>
-          <HeaderWithBackButton />
-        </Miss>
-
-        <SearchRoute>
-          <AsyncComponent
-            getComponent={(callback) => {
-              require.ensure([], (require) => {
-                callback(null, require('./pages/Search').default)
-              }, 'search')
-            }}
-          />
-        </SearchRoute>
-
-        <BeerRoute>
-          <AsyncComponent
-            getComponent={(callback) => {
-              require.ensure([], (require) => {
-                callback(null, require('./pages/Beer').default)
-              }, 'beer')
-            }}
-          />
-        </BeerRoute>
-
-        <OfflineRoute>
-          <AsyncComponent
-            getComponent={(callback) => {
-              require.ensure([], (require) => {
-                callback(null, require('./pages/Offline').default)
-              }, 'beer')
-            }}
-          />
-        </OfflineRoute>
-
-        <Miss>
-          <NotFound />
-        </Miss>
+        <Switch>
+          <Route path="/" exact component={AsyncSearch}/>
+          <Route path="/offline" component={AsyncOffline}/>
+          <Route path="/beer/:id" component={AsyncBeer}/>
+          {/* No match */}
+          <Route component={AsyncNotFound}/>
+        </Switch>
 
       </Shell>
     </Router>

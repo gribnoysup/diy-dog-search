@@ -1,67 +1,130 @@
 import React from 'react'
-import axios from 'axios'
+import {connect} from 'react-redux'
+import styled from 'styled-components'
+
+import {addBeerToList, setSelectedBeer} from '../store/actions'
+import {fetchBeerById} from '../util/fetch'
 
 import Process from '../components/Process'
-import BeerContent from '../components/BeerContent'
+import {Content} from '../components/layout/Layout'
+import {Grid, Unit as AUnit} from '../components/layout/Grid'
 
-import {pushBeer} from '../util/db'
+import {HeaderBeer} from '../components/beer/Header'
+import {Title, Subtitle} from '../components/beer/Title'
+import {Description} from '../components/beer/Description'
+import {Basics} from '../components/beer/Basics'
+import {Method} from '../components/beer/Method'
+import {Ingredients} from '../components/beer/Ingredients'
+import {Pairings} from '../components/beer/Pairings'
+import {Tips} from '../components/beer/Tips'
+import {Acknowledgments} from '../components/beer/Acknowledgments'
+import {ShareBeer} from '../components/beer/ShareBeer'
 
-export default class Beer extends React.Component {
-  constructor(...args) {
-    super(...args)
-    this.state = {
-      isFetching: true,
-      beer: {}
+
+const Unit = styled(AUnit)`
+  @media screen and (min-width: 48em) {
+    &:first-child {
+      padding-right: 12px;
     }
 
-    this.currentBeerId = null
+    &:last-child {
+      padding-left: 12px;
+    }
+  }
+`
+
+const getSelectedBeer = (state) => {
+  return state.beerList
+    .find((beer) => beer.id === state.selectedBeer)
+}
+
+class Beer extends React.Component {
+
+  state = {
+    isFetching: false
   }
 
-  getBeerId(path = this.props.location.path) {
-    const result = path.match(/^\/beer\/(\d+|random)\/?$/)
-    if (result && result[1]) return result[1]
-    return null
-  }
-
-  fetchBeer(location = this.props.location) {
-    const beerId = this.getBeerId(location.path)
-    this.currentBeerId = beerId
-
+  fetchBeer(id) {
+    const {onBeerFetched} = this.props
     this.setState({isFetching: true})
 
-    if (beerId) {
-      return axios.get(`https://api.punkapi.com/v2/beers/${beerId}`)
-    } else {
-      return Promise.reject()
-    }
-
-  }
-
-  setBeer(response) {
-    if (Array.isArray(response.data)) {
-      const newBeerId = this.getBeerId()
-      const newBeer = response.data[0]
-      if (newBeerId !== 'random') pushBeer(newBeer)
-      this.setState({beer: newBeer, isFetching: false})
-      // TODO: maybe
-      // window.history.replaceState({}, null, `/beer/${response.data[0].id}/`)
-    }
-  }
-
-  componentWillReceiveProps(newProps) {
-    const newBeerId = this.getBeerId(newProps.location.path)
-
-    if (newBeerId !== this.currentBeerId || newBeerId === 'random') {
-      this.fetchBeer(newProps.location).then((response) => this.setBeer(response))
-    }
+    fetchBeerById(id)
+      .then((newBeer) => onBeerFetched(newBeer))
+      .then(() => this.setState({isFetching: false}))
   }
 
   componentDidMount() {
-    this.fetchBeer().then((response) => this.setBeer(response))
+    const {match, selectedBeer} = this.props
+
+    if (match.params.id === 'random' || !selectedBeer) {
+      this.fetchBeer(match.params.id)
+    }
   }
 
   render() {
-    const {beer, isFetching} = this.state
-    return isFetching ? <Process /> : <BeerContent {...beer} />
+    const {isFetching} = this.state
+    const {selectedBeer, goBack} = this.props
+
+    return (
+      <Content>
+        <HeaderBeer
+          onBackClick={() => goBack()}
+          onRndClick={() => this.fetchBeer('random')}
+        />
+
+        {(isFetching || !selectedBeer) ? <Process /> : [
+
+          <Title key="title">{selectedBeer.name}</Title>,
+          <Subtitle key="subtitle">{selectedBeer.tagline}</Subtitle>,
+
+          <Description key="description" description={selectedBeer.description}/>,
+
+          <Grid key="basics-method">
+
+            <Unit md={1/2}>
+              <Basics beer={selectedBeer}/>
+            </Unit>
+
+            <Unit md={1/2}>
+              <Method method={selectedBeer.method}/>
+            </Unit>
+
+          </Grid>,
+
+          <Ingredients key="ingredients" ingredients={selectedBeer.ingredients}/>,
+
+          <Grid key="pairings-tips">
+
+            <Unit md={1/2}>
+              <Pairings foodPairing={selectedBeer.food_pairing}/>
+            </Unit>
+
+            <Unit md={1/2}>
+              <Tips tips={selectedBeer.brewers_tips}/>
+            </Unit>
+
+          </Grid>,
+
+          <Acknowledgments key="acknowledgments" contributor={selectedBeer.contributed_by}/>,
+
+          <ShareBeer key="share" name={selectedBeer.name} id={selectedBeer.id}/>
+        ]}
+
+      </Content>
+    )
   }
 }
+
+export default connect(
+  (state) => ({
+    isOffline: state.isOffline,
+    selectedBeer: getSelectedBeer(state)
+  }),
+  (dispatch) => ({
+    onMount: (beerId) => dispatch(setSelectedBeer(beerId)),
+    onBeerFetched: (newBeer) => {
+      dispatch(addBeerToList(newBeer))
+      dispatch(setSelectedBeer(newBeer.id))
+    }
+  })
+)(Beer)

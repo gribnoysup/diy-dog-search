@@ -59,6 +59,7 @@ H3.displayName = 'H3'
 export const P = styled.p`
   margin: 0;
   margin-top: 36px;
+  text-align: ${(props) => props.align || 'left'};
 
   &:first-child {
     margin-top: calc(36px / 2);

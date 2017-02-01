@@ -1,4 +1,7 @@
+import React from 'react'
 import styled from 'styled-components'
+
+import {FlexContainer} from './Flex'
 
 import mash from '../../assets/mash.svg'
 import fermenter from '../../assets/ferm2.svg'
@@ -39,3 +42,36 @@ export const Icon = styled.span`
 `
 
 Icon.displayName = 'Icon'
+
+const SmallTitle = styled.small`
+  font-weight: bold;
+  text-transform: uppercase;
+  padding: 0 10px;
+`
+
+SmallTitle.displayName = 'SmallTitle'
+
+const DivWithPadding = styled.div`
+  flex: 1;
+  padding: 0 10px;
+`
+
+DivWithPadding.displayName = 'DivWithPadding'
+
+export function IconWithTitle({icon, children}) {
+  return (
+    <FlexContainer>
+      <Icon icon={icon} invert/>
+      {children && <SmallTitle>{children}</SmallTitle>}
+    </FlexContainer>
+  )
+}
+
+export function IconWithContent({icon, children}) {
+  return (
+    <FlexContainer align="flex-start">
+      <Icon icon={icon} invert/>
+      {children && <DivWithPadding>{children}</DivWithPadding>}
+    </FlexContainer>
+  )
+}

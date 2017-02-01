@@ -52,13 +52,17 @@ function OfflineNothingToShow() {
   )
 }
 
-export default function OfflineContent({beerList}) {
+export default function OfflineContent({beerList, onBeerClick}) {
   return (
     <ContentWithMargin>
       {beerList && beerList.length > 0 ?
         [
           <OfflineAvaliableText key="text"/>,
-          <BeerList key="list" beers={beerList}/>
+          <BeerList
+            key="list"
+            beers={beerList}
+            onBeerClick={onBeerClick}
+          />
         ] :
         <OfflineNothingToShow />
       }

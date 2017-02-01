@@ -8,7 +8,6 @@ const build = path.join(__dirname, 'build')
 const index = path.join(__dirname, 'build', 'index.html')
 const toolbox = path.join(__dirname, 'node_modules', 'sw-toolbox', 'sw-toolbox.js')
 
-
 if (!process.env.NO_LOGGING) {
   app.use(morgan('tiny'))
 }
