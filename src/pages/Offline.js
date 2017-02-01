@@ -1,9 +1,12 @@
 import React from 'react'
+import {connect} from 'react-redux'
 
 import OfflineContent from '../components/offline/OfflineContent'
-import {getBeerList} from '../util/db'
 
-export default class Offline extends React.Component {
+import {getBeerList} from '../util/db'
+import {setSelectedBeer} from '../store/actions'
+
+class Offline extends React.Component {
   constructor(...args) {
     super(...args)
     this.onBeerClick = this.handleBeerClick.bind(this)
@@ -20,7 +23,10 @@ export default class Offline extends React.Component {
   }
 
   handleBeerClick(id) {
-    this.props.push(`/beer/${id}/`)
+    const {onBeerClick, push} = this.props
+
+    onBeerClick(id)
+    push(`/beer/${id}/`)
   }
 
   render() {
@@ -32,3 +38,10 @@ export default class Offline extends React.Component {
     )
   }
 }
+
+export default connect(
+  (state) => ({}),
+  (dispatch) => ({
+    onBeerClick: (id) => dispatch(setSelectedBeer(id))
+  })
+)(Offline)

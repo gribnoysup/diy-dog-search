@@ -1,11 +1,14 @@
 import React from 'react'
 import styled from 'styled-components'
+import {keyframes} from '../../util/css'
 
 export const CardContainer = styled.div`
   display: flex;
   flex-direction: column;
   margin: 15px 0;
   flex: 1;
+
+  animation: ${keyframes.fadeIn} .16s ease-in;
 `
 
 CardContainer.displayName = 'CardContainer'
